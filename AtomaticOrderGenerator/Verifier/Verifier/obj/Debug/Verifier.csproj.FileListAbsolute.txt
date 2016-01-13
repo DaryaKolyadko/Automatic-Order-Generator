@@ -1,0 +1,6 @@
+D:\Visual Studio 2013 projects\Verifier\Verifier\bin\Debug\Verifier.exe.config
+D:\Visual Studio 2013 projects\Verifier\Verifier\bin\Debug\Verifier.exe
+D:\Visual Studio 2013 projects\Verifier\Verifier\bin\Debug\Verifier.pdb
+D:\Visual Studio 2013 projects\Verifier\Verifier\obj\Debug\Verifier.exe
+D:\Visual Studio 2013 projects\Verifier\Verifier\obj\Debug\Verifier.pdb
+D:\Visual Studio 2013 projects\Verifier\Verifier\obj\Debug\Verifier.csprojResolveAssemblyReference.cache

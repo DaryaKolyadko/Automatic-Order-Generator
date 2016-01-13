@@ -1,0 +1,5 @@
+D:\Visual Studio 2013 projects\Verifier\Verifier\bin\Release\Verifier.exe.config
+D:\Visual Studio 2013 projects\Verifier\Verifier\bin\Release\Verifier.exe
+D:\Visual Studio 2013 projects\Verifier\Verifier\bin\Release\Verifier.pdb
+D:\Visual Studio 2013 projects\Verifier\Verifier\obj\Release\Verifier.exe
+D:\Visual Studio 2013 projects\Verifier\Verifier\obj\Release\Verifier.pdb

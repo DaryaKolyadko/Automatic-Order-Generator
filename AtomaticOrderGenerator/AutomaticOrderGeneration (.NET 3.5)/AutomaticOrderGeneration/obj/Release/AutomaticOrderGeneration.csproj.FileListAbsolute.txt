@@ -1,0 +1,17 @@
+D:\Visual Studio 2013 projects\AutomaticOrderGeneration\AutomaticOrderGeneration\bin\Release\AutomaticOrderGeneration.exe.config
+D:\Visual Studio 2013 projects\AutomaticOrderGeneration\AutomaticOrderGeneration\bin\Release\AutomaticOrderGeneration.exe
+D:\Visual Studio 2013 projects\AutomaticOrderGeneration\AutomaticOrderGeneration\bin\Release\AutomaticOrderGeneration.pdb
+D:\Visual Studio 2013 projects\AutomaticOrderGeneration\AutomaticOrderGeneration\obj\Release\AutomaticOrderGeneration.MainForm.resources
+D:\Visual Studio 2013 projects\AutomaticOrderGeneration\AutomaticOrderGeneration\obj\Release\AutomaticOrderGeneration.Properties.Resources.resources
+D:\Visual Studio 2013 projects\AutomaticOrderGeneration\AutomaticOrderGeneration\obj\Release\AutomaticOrderGeneration.csproj.GenerateResource.Cache
+D:\Visual Studio 2013 projects\AutomaticOrderGeneration\AutomaticOrderGeneration\obj\Release\AutomaticOrderGeneration.exe
+D:\Visual Studio 2013 projects\AutomaticOrderGeneration\AutomaticOrderGeneration\obj\Release\AutomaticOrderGeneration.pdb
+D:\Visual Studio 2013 projects\AutomaticOrderGeneration\AutomaticOrderGeneration\obj\Release\AutomaticOrderGeneration.csprojResolveAssemblyReference.cache
+C:\Users\Даша\Desktop\AutomaticOrderGeneration\AutomaticOrderGeneration\bin\Release\AutomaticOrderGeneration.exe.config
+C:\Users\Даша\Desktop\AutomaticOrderGeneration\AutomaticOrderGeneration\obj\Release\AutomaticOrderGeneration.exe
+C:\Users\Даша\Desktop\AutomaticOrderGeneration\AutomaticOrderGeneration\obj\Release\AutomaticOrderGeneration.pdb
+C:\Users\Даша\Desktop\AutomaticOrderGeneration\AutomaticOrderGeneration\obj\Release\AutomaticOrderGeneration.MainForm.resources
+C:\Users\Даша\Desktop\AutomaticOrderGeneration\AutomaticOrderGeneration\obj\Release\AutomaticOrderGeneration.Properties.Resources.resources
+C:\Users\Даша\Desktop\AutomaticOrderGeneration\AutomaticOrderGeneration\obj\Release\AutomaticOrderGeneration.csproj.GenerateResource.Cache
+C:\Users\Даша\Desktop\AutomaticOrderGeneration\AutomaticOrderGeneration\bin\Release\AutomaticOrderGeneration.exe
+C:\Users\Даша\Desktop\AutomaticOrderGeneration\AutomaticOrderGeneration\bin\Release\AutomaticOrderGeneration.pdb

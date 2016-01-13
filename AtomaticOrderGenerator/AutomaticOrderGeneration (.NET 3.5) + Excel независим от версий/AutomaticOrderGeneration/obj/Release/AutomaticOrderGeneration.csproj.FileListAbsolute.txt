@@ -1,0 +1,46 @@
+D:\Visual Studio 2013 projects\AutomaticOrderGeneration\AutomaticOrderGeneration\bin\Release\AutomaticOrderGeneration.exe.config
+D:\Visual Studio 2013 projects\AutomaticOrderGeneration\AutomaticOrderGeneration\bin\Release\AutomaticOrderGeneration.exe
+D:\Visual Studio 2013 projects\AutomaticOrderGeneration\AutomaticOrderGeneration\bin\Release\AutomaticOrderGeneration.pdb
+D:\Visual Studio 2013 projects\AutomaticOrderGeneration\AutomaticOrderGeneration\obj\Release\AutomaticOrderGeneration.MainForm.resources
+D:\Visual Studio 2013 projects\AutomaticOrderGeneration\AutomaticOrderGeneration\obj\Release\AutomaticOrderGeneration.Properties.Resources.resources
+D:\Visual Studio 2013 projects\AutomaticOrderGeneration\AutomaticOrderGeneration\obj\Release\AutomaticOrderGeneration.csproj.GenerateResource.Cache
+D:\Visual Studio 2013 projects\AutomaticOrderGeneration\AutomaticOrderGeneration\obj\Release\AutomaticOrderGeneration.exe
+D:\Visual Studio 2013 projects\AutomaticOrderGeneration\AutomaticOrderGeneration\obj\Release\AutomaticOrderGeneration.pdb
+D:\Visual Studio 2013 projects\AutomaticOrderGeneration\AutomaticOrderGeneration\obj\Release\AutomaticOrderGeneration.csprojResolveAssemblyReference.cache
+C:\Users\Даша\Desktop\AutomaticOrderGeneration\AutomaticOrderGeneration\bin\Release\AutomaticOrderGeneration.exe.config
+C:\Users\Даша\Desktop\AutomaticOrderGeneration\AutomaticOrderGeneration\obj\Release\AutomaticOrderGeneration.exe
+C:\Users\Даша\Desktop\AutomaticOrderGeneration\AutomaticOrderGeneration\obj\Release\AutomaticOrderGeneration.pdb
+C:\Users\Даша\Desktop\AutomaticOrderGeneration\AutomaticOrderGeneration\obj\Release\AutomaticOrderGeneration.MainForm.resources
+C:\Users\Даша\Desktop\AutomaticOrderGeneration\AutomaticOrderGeneration\obj\Release\AutomaticOrderGeneration.Properties.Resources.resources
+C:\Users\Даша\Desktop\AutomaticOrderGeneration\AutomaticOrderGeneration\obj\Release\AutomaticOrderGeneration.csproj.GenerateResource.Cache
+C:\Users\Даша\Desktop\AutomaticOrderGeneration\AutomaticOrderGeneration\bin\Release\AutomaticOrderGeneration.exe
+C:\Users\Даша\Desktop\AutomaticOrderGeneration\AutomaticOrderGeneration\bin\Release\AutomaticOrderGeneration.pdb
+D:\Visual Studio 2013 projects\AutomaticOrderGeneration (.NET 3.5) + Excel\AutomaticOrderGeneration\bin\Release\AutomaticOrderGeneration.exe.config
+D:\Visual Studio 2013 projects\AutomaticOrderGeneration (.NET 3.5) + Excel\AutomaticOrderGeneration\obj\Release\AutomaticOrderGeneration.exe
+D:\Visual Studio 2013 projects\AutomaticOrderGeneration (.NET 3.5) + Excel\AutomaticOrderGeneration\obj\Release\AutomaticOrderGeneration.pdb
+D:\Visual Studio 2013 projects\AutomaticOrderGeneration (.NET 3.5) + Excel\AutomaticOrderGeneration\obj\Release\AutomaticOrderGeneration.csproj.ResolveComReference.cache
+D:\Visual Studio 2013 projects\AutomaticOrderGeneration (.NET 3.5) + Excel\AutomaticOrderGeneration\obj\Release\AutomaticOrderGeneration.MainForm.resources
+D:\Visual Studio 2013 projects\AutomaticOrderGeneration (.NET 3.5) + Excel\AutomaticOrderGeneration\obj\Release\AutomaticOrderGeneration.Properties.Resources.resources
+D:\Visual Studio 2013 projects\AutomaticOrderGeneration (.NET 3.5) + Excel\AutomaticOrderGeneration\obj\Release\AutomaticOrderGeneration.RegiterPathForm.resources
+D:\Visual Studio 2013 projects\AutomaticOrderGeneration (.NET 3.5) + Excel\AutomaticOrderGeneration\obj\Release\AutomaticOrderGeneration.csproj.GenerateResource.Cache
+D:\Visual Studio 2013 projects\AutomaticOrderGeneration (.NET 3.5) + Excel\AutomaticOrderGeneration\bin\Release\AutomaticOrderGeneration.exe
+D:\Visual Studio 2013 projects\AutomaticOrderGeneration (.NET 3.5) + Excel\AutomaticOrderGeneration\bin\Release\AutomaticOrderGeneration.pdb
+D:\Visual Studio 2013 projects\AutomaticOrderGeneration (.NET 3.5) + Excel\AutomaticOrderGeneration\obj\Release\AutomaticOrderGeneration.RegisterExcelSheetForm.resources
+D:\Visual Studio 2013 projects\AutomaticOrderGeneration (.NET 3.5) + Excel\AutomaticOrderGeneration\bin\Release\Office.dll
+D:\Visual Studio 2013 projects\AutomaticOrderGeneration (.NET 3.5) + Excel\AutomaticOrderGeneration\bin\Release\Microsoft.Office.Interop.Excel.dll
+D:\Visual Studio 2013 projects\AutomaticOrderGeneration (.NET 3.5) + Excel\AutomaticOrderGeneration\bin\Release\Microsoft.Vbe.Interop.dll
+D:\Visual Studio 2013 projects\AutomaticOrderGeneration (.NET 3.5) + Excel\AutomaticOrderGeneration\obj\Release\AutomaticOrderGeneration.csprojResolveAssemblyReference.cache
+D:\Visual Studio 2013 projects\AutomaticOrderGeneration (.NET 3.5) + Excel независим от версий\AutomaticOrderGeneration\bin\Release\AutomaticOrderGeneration.exe.config
+D:\Visual Studio 2013 projects\AutomaticOrderGeneration (.NET 3.5) + Excel независим от версий\AutomaticOrderGeneration\obj\Release\AutomaticOrderGeneration.csproj.ResolveComReference.cache
+D:\Visual Studio 2013 projects\AutomaticOrderGeneration (.NET 3.5) + Excel независим от версий\AutomaticOrderGeneration\obj\Release\AutomaticOrderGeneration.exe
+D:\Visual Studio 2013 projects\AutomaticOrderGeneration (.NET 3.5) + Excel независим от версий\AutomaticOrderGeneration\obj\Release\AutomaticOrderGeneration.pdb
+D:\Visual Studio 2013 projects\AutomaticOrderGeneration (.NET 3.5) + Excel независим от версий\AutomaticOrderGeneration\obj\Release\AutomaticOrderGeneration.csprojResolveAssemblyReference.cache
+D:\Visual Studio 2013 projects\AutomaticOrderGeneration (.NET 3.5) + Excel независим от версий\AutomaticOrderGeneration\obj\Release\AutomaticOrderGeneration.MainForm.resources
+D:\Visual Studio 2013 projects\AutomaticOrderGeneration (.NET 3.5) + Excel независим от версий\AutomaticOrderGeneration\obj\Release\AutomaticOrderGeneration.Properties.Resources.resources
+D:\Visual Studio 2013 projects\AutomaticOrderGeneration (.NET 3.5) + Excel независим от версий\AutomaticOrderGeneration\obj\Release\AutomaticOrderGeneration.RegisterExcelSheetForm.resources
+D:\Visual Studio 2013 projects\AutomaticOrderGeneration (.NET 3.5) + Excel независим от версий\AutomaticOrderGeneration\obj\Release\AutomaticOrderGeneration.RegiterPathForm.resources
+D:\Visual Studio 2013 projects\AutomaticOrderGeneration (.NET 3.5) + Excel независим от версий\AutomaticOrderGeneration\obj\Release\AutomaticOrderGeneration.csproj.GenerateResource.Cache
+D:\Visual Studio 2013 projects\AutomaticOrderGeneration (.NET 3.5) + Excel независим от версий\AutomaticOrderGeneration\bin\Release\AutomaticOrderGeneration.exe
+D:\Visual Studio 2013 projects\AutomaticOrderGeneration (.NET 3.5) + Excel независим от версий\AutomaticOrderGeneration\bin\Release\AutomaticOrderGeneration.pdb
+D:\Visual Studio 2013 projects\AutomaticOrderGeneration (.NET 3.5) + Excel независим от версий\AutomaticOrderGeneration\bin\Release\GemBox.Spreadsheet.xml
+D:\Visual Studio 2013 projects\AutomaticOrderGeneration (.NET 3.5) + Excel независим от версий\AutomaticOrderGeneration\bin\Release\GemBox.Spreadsheet.dll
