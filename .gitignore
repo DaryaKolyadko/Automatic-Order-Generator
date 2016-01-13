@@ -1,0 +1,6 @@
+*.class
+
+#VisualStudio
+*Debug/
+*Release/
+*obj/
