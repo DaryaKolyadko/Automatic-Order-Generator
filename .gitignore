@@ -1,6 +1,4 @@
-*.class
-
 #VisualStudio
-*Debug/
-*Release/
-*obj/
+Debug/
+Release/
+obj/
