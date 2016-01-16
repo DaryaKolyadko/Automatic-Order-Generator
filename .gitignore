@@ -1,4 +1,4 @@
 #VisualStudio
 **/Debug/*
 **/Release/*
-AtomaticOrderGenerator/AutomaticOrderGeneration (.NET 3.5)/AutomaticOrderGeneration/obj/
+**/obj/*
