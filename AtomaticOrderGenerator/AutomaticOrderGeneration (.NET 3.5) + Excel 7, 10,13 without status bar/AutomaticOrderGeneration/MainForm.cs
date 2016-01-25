@@ -119,6 +119,11 @@ namespace AutomaticOrderGeneration
                 return;
             }
 
+            if (Properties.Settings.Default.RegisterPath.Equals(String.Empty))
+            {
+                MessageBox.Show("Не указан путь к реестру. Укажите его во вкладке Сервис->Настройки", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             try
             {
                 this.Cursor = System.Windows.Forms.Cursors.WaitCursor;
