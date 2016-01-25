@@ -47,7 +47,9 @@ namespace AutomaticOrderGeneration
         private static String[] paperAccounts = {"3140000000101"}; // с этого счета приходят платежи со Сморгони и Волковыска
         // они ничем не отличаются, кроме номера документа, и их нет в реестре. поэтому их не ищем даже в реестре
         // они есть только на бумагах
-        private static List<String>[] paperFilials = {new List<string>(){filialNames[2],  filialNames[4]}}; // Волковыск, Сморгонь
+        private static List<String>[] paperFilials = {new List<string>(){
+                                                                        filialNames[(int)Filials.Volkovisk], 
+                                                                        filialNames[(int)Filials.Smorgon]}};
         private static List<String>[]paperAdditionalCodes = {new List<string>() { "152011", "152111" }};
         public static void SaveOrderIntoFile(string prologue, List<PaymentRecord> content, List<List<int>> filialMarks,
             string epilogue)
@@ -62,7 +64,7 @@ namespace AutomaticOrderGeneration
                 {
                     int filialIndex = Array.IndexOf(filialSpecialAccounts, content[i].correspondentAccount);
                     int paperAccountIndex = Array.IndexOf(paperAccounts, content[i].correspondentAccount);
-                    
+
                     if (filialIndex != -1)
                     {
                         lines.Add(ChangedPaymentRecord(content[i], filialIndex, true, paperAccountIndex));
@@ -73,13 +75,25 @@ namespace AutomaticOrderGeneration
                 else
                 {
                     int filialCount = filialMarks[i].Count;
+                    int paperAccountIndex = Array.IndexOf(paperAccounts, content[i].correspondentAccount);
 
-                    for (int j = 0; j < filialCount; j++)
+                    if (paperAccountIndex > -1)
                     {
-                        if (j == 0)
-                            lines.Add(ChangedPaymentRecord(content[i], filialMarks[i][j], true, true, false));
-                        else
-                            lines.Add(ChangedPaymentRecord(content[i], filialMarks[i][j], true, false, false));
+                        for (int j = 0; j < filialCount; j++)
+                            if (j == 0)
+                                lines.Add(ChangedPaymentRecord(content[i], filialMarks[i][j],  true, true, false, paperAccountIndex));
+                            else
+                                lines.Add(ChangedPaymentRecord(content[i], filialMarks[i][j],  true, false, false, paperAccountIndex));
+                    }
+                    else
+                    {
+                        for (int j = 0; j < filialCount; j++)
+                        {
+                            if (j == 0)
+                                lines.Add(ChangedPaymentRecord(content[i], filialMarks[i][j], true, true, false));
+                            else
+                                lines.Add(ChangedPaymentRecord(content[i], filialMarks[i][j], true, false, false));
+                        }
                     }
                 }
             }
@@ -146,7 +160,7 @@ namespace AutomaticOrderGeneration
             }
             else
             {
-                if(paperAccountIndex != -1)
+                if (paperAccountIndex != -1 && CheckPaperFilial(paperAccountIndex, filial, record.documentNumber))
                     result += String.Format("{0, 10}", paperAdditionalCodes[paperAccountIndex][paperFilials[paperAccountIndex].IndexOf(filialNames[filial])]);
                 else    
                     result += String.Format("{0, 10}", filialCodes[filial]);
@@ -177,21 +191,10 @@ namespace AutomaticOrderGeneration
                 previousWasMoved %= 2;
             }
 
-           if (paperAccountIndex != -1)
+            if (paperAccountIndex != -1)
             {
-                if (paperFilials[paperAccountIndex].Contains(filialNames[filial]))
+                if (!generalSumDictionary.ContainsKey(record.documentNumber)) // если сумма с нескольких филиалов
                     generalSumDictionary.Add(record.documentNumber, 0); // записей на филиалы Сморгонь и Волковыск в реестре нету
-                else
-                {
-                    StringBuilder filialsStr = new StringBuilder(paperFilials[paperAccountIndex].First());
-                    int paperFilialsCount = paperFilials[paperAccountIndex].Count;
-                    for (int i = 1; i < paperFilialsCount; i++)
-                        filialsStr.Append(", " + paperFilials[paperAccountIndex][i]);
-                    filialsStr.Append('.');
-                    throw new Exception("Обнаружено несоответствие.\nКорресп. счету " +
-                                        paperAccounts[paperAccountIndex] + " могут сооответствовать филиалы: " +
-                                        filialsStr);
-                }
             }
             else
             {
@@ -341,6 +344,20 @@ namespace AutomaticOrderGeneration
             catch (Exception) { }
             
             return credit;
+        }
+
+        private static bool CheckPaperFilial(int paperAccountIndex, int filial, String documentNumber)
+        {
+            if (paperFilials[paperAccountIndex].Contains(filialNames[filial]))
+                return true;
+            StringBuilder filialsStr = new StringBuilder(paperFilials[paperAccountIndex].First());
+            int paperFilialsCount = paperFilials[paperAccountIndex].Count;
+            for (int i = 1; i < paperFilialsCount; i++)
+                filialsStr.Append(", " + paperFilials[paperAccountIndex][i]);
+            filialsStr.Append('.');
+            throw new Exception("Обнаружено несоответствие для записи с номером документа " + documentNumber +
+                ".\nКорресп. счету " + paperAccounts[paperAccountIndex] + " могут сооответствовать филиалы: " +
+                                filialsStr);
         }
     }
 }

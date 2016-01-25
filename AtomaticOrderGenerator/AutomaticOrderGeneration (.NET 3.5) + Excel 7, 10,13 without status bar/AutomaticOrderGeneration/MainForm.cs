@@ -245,5 +245,10 @@ namespace AutomaticOrderGeneration
                 gridOrder.NotifyCurrentCellDirty(true);
             }
         }
+
+        private void gridOrder_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            gridOrder.RefreshEdit();
+        }
     }
 }
