@@ -160,6 +160,7 @@
             this.gridOrder.Size = new System.Drawing.Size(937, 288);
             this.gridOrder.TabIndex = 1;
             this.gridOrder.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridOrder_CellClick);
+            this.gridOrder.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridOrder_CellContentClick);
             // 
             // GenerateOrderButton
             // 
