@@ -232,5 +232,18 @@ namespace AutomaticOrderGeneration
             RegisterExcelSheetForm form = new RegisterExcelSheetForm();
             form.ShowDialog();
         }
+
+
+        private void gridOrder_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewCheckBoxCell cell = gridOrder.CurrentCell as DataGridViewCheckBoxCell;
+
+            if (cell != null)
+            {
+                cell.Value = cell.Value == null || !((bool)cell.Value);
+                gridOrder.RefreshEdit();
+                gridOrder.NotifyCurrentCellDirty(true);
+            }
+        }
     }
 }
