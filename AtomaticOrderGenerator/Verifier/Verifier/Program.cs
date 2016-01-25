@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 
 namespace Verifier
@@ -55,7 +52,6 @@ namespace Verifier
                     if (!arr_1[i].Equals(arr_2[i]))
                     {
                         Console.WriteLine("ERROR {0} {1} {2}", i, arr_1[i], arr_2[i]);
-                        return false;
                     }
               //  }
             }
