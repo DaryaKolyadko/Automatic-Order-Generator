@@ -5,6 +5,8 @@ using System.Text;
 using System.Data;
 using System.IO;
 using System.Windows.Forms;
+using Microsoft.Office.Interop.Excel;
+using DataTable = System.Data.DataTable;
 using Interop = Microsoft.Office.Interop;
 
 namespace AutomaticOrderGeneration
@@ -239,7 +241,7 @@ namespace AutomaticOrderGeneration
             Interop.Excel.Range usedRange = RegisterSheet.UsedRange;
 
             int usedColumnsCount = RegisterSheet.UsedRange.Columns.Count;
-            Interop.Excel.Range columnNamesRange = RegisterSheet.get_Range("A1", "A" + usedColumnsCount);
+            Interop.Excel.Range columnNamesRange = RegisterSheet.get_Range("A1", (char)('A' + usedColumnsCount -1) + "1");//"A" + usedColumnsCount);
 
             // считываем имена столбцов из первой строки
             bool found = false;
@@ -247,7 +249,16 @@ namespace AutomaticOrderGeneration
 
             for (int i = 2; i <= usedColumnsCount; i++)
             {
-                String columnName = (columnNamesRange.Cells[1, i] as Interop.Excel.Range).Value2.ToString();
+                String columnName = String.Empty;
+
+                try
+                {
+                    columnName = (columnNamesRange.Cells[1, i] as Interop.Excel.Range).Value2.ToString();
+                }
+                catch (NullReferenceException)
+                {
+                    break;
+                }
 
                 if (!found)
                 {
@@ -335,7 +346,7 @@ namespace AutomaticOrderGeneration
                     {
                         if (r[0].ToString() == record.documentNumber)
                         {
-                            credit = Convert.ToDouble(rows.First()[filial + filialRegisterIndent]);
+                            credit = Convert.ToDouble(r[filial + filialRegisterIndent]);
                             generalSumDictionary[record.documentNumber] -= credit;
                         }
                     }
