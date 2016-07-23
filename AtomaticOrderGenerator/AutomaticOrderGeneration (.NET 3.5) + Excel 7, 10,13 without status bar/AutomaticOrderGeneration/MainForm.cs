@@ -16,8 +16,16 @@ namespace AutomaticOrderGeneration
         private string prologue;
         private string epilogue;
         private DataTable tableOrder;
-        private string[] columnNames = {"Дата док.", "N док.", "Корреспондент код", 
-                                       "Корреспондент счет", "Номинал кредит"};
+        private Color debtorColor = Color.LightSteelBlue;
+        private Color defaultColor = Color.White;
+
+        private Dictionary<int, int> debtorDictionary;
+
+        private string[] columnNames =
+        {
+            "Дата док.", "N док.", "Корреспондент код",
+            "Корреспондент счет", "Номинал кредит"
+        };
 
         public static String fileName;
 
@@ -25,10 +33,11 @@ namespace AutomaticOrderGeneration
         {
             InitializeComponent();
             tableOrder = new DataTable();
-           
+            debtorDictionary = new Dictionary<int, int>();
+
             foreach (string name in columnNames)
             {
-                tableOrder.Columns.Add(name, typeof(String));
+                tableOrder.Columns.Add(name, typeof (String));
             }
         }
 
@@ -45,12 +54,14 @@ namespace AutomaticOrderGeneration
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                if((reader = new StreamReader(dialog.OpenFile(), Encoding.Default)) != null)
+                if ((reader = new StreamReader(dialog.OpenFile(), Encoding.Default)) != null)
                 {
                     fileName = dialog.FileName;
 
                     if (!TryWriteFileIntoTable(reader))
-                        MessageBox.Show("Проверьте правильность выбранного файла", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Проверьте правильность выбранного файла", "Предупреждение",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    debtorDictionary.Clear();
                 }
             }
         }
@@ -67,7 +78,8 @@ namespace AutomaticOrderGeneration
             foreach (PaymentRecord record in document)
             {
                 tableOrder.Rows.Add(record.documentDate.ToString("dd.MM.yyyy"), record.documentNumber,
-                    record.correspondentCode, record.correspondentAccount, record.ratingCredit.ToString("N", Program.cultureInfo));
+                    record.correspondentCode, record.correspondentAccount,
+                    record.ratingCredit.ToString("N", Program.cultureInfo));
             }
 
             gridOrder.DataSource = null;
@@ -78,7 +90,7 @@ namespace AutomaticOrderGeneration
 
             foreach (DataGridViewColumn c in gridOrder.Columns)
                 c.ReadOnly = true;
-            
+
             foreach (String filial in OrderFileGenerator.filialNames)
             {
                 column = new DataGridViewCheckBoxColumn();
@@ -88,7 +100,7 @@ namespace AutomaticOrderGeneration
                 column.HeaderCell.Style.Font = new Font(gridOrder.Font, FontStyle.Bold);
                 gridOrder.Columns.Add(column);
             }
-            
+
             return true;
         }
 
@@ -109,11 +121,11 @@ namespace AutomaticOrderGeneration
         }
 
         private void GenerateOrder()
-        { 
+        {
             DialogResult result = DialogResult.None;
             bool everythingIsOk = true;
 
-            if(gridOrder.ColumnCount == 0)
+            if (gridOrder.ColumnCount == 0)
             {
                 MessageBox.Show("Нет данных для генерации выписки", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -121,47 +133,57 @@ namespace AutomaticOrderGeneration
 
             if (Properties.Settings.Default.RegisterPath.Equals(String.Empty))
             {
-                MessageBox.Show("Не указан путь к реестру. Укажите его во вкладке Сервис->Настройки", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Не указан путь к реестру. Укажите его во вкладке Сервис->Настройки", "Ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             try
             {
-                this.Cursor = System.Windows.Forms.Cursors.WaitCursor;
+                Cursor = Cursors.WaitCursor;
                 String date = tableOrder.Rows[0].Field<String>(columnNames.First());
 
                 if (!OrderFileGenerator.ConnectToExcelRegisterAndGetInformation(date))
                 {
-                    result = MessageBox.Show("Возникли проблемы с файлом реестра. Не найдены записи на требуемую дату: " +  
-                        date, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    result =
+                        MessageBox.Show("Возникли проблемы с файлом реестра. Не найдены записи на требуемую дату: " +
+                                        date, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (System.Runtime.InteropServices.COMException exc)
             {
                 everythingIsOk = false;
                 result = MessageBox.Show("Возникли проблемы с файлом реестра. Не найдена страница с именем " +
-                    Properties.Settings.Default.RegisterSheetName + ". Проверьте имя страницы и файл реестра.\n" + exc.Message,
+                                         Properties.Settings.Default.RegisterSheetName +
+                                         ". Проверьте имя страницы и файл реестра.\n" + exc.Message,
                     "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
                 if (result == DialogResult.OK)
                     result = MessageBox.Show("Хотите продолжить генерацию выписки без импорта данных из реестра? " +
-                       "(Т.е. если сумма одна на несколько филиалов, то она дублируется во всех филиалах, а ее " +
-                       "изменение придется выполнять вручную)", "Предложение", MessageBoxButtons.YesNo,
-                       MessageBoxIcon.Question);
+                                             "(Т.е. если сумма одна на несколько филиалов, то она дублируется во всех филиалах, а ее " +
+                                             "изменение придется выполнять вручную)", "Предложение",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question);
             }
 
             if (result == DialogResult.Yes || everythingIsOk)
             {
                 List<List<int>> filialMarks = new List<List<int>>();
 
-                int firstCheckBoxColumnIndex = gridOrder.Columns.IndexOf(gridOrder.Columns[OrderFileGenerator.filialNames.First()]);
+                int firstCheckBoxColumnIndex =
+                    gridOrder.Columns.IndexOf(gridOrder.Columns[OrderFileGenerator.filialNames.First()]);
                 int columnCount = gridOrder.Columns.Count;
                 int rowCount = gridOrder.Rows.Count;
 
                 for (int i = 0; i < rowCount; i++)
                 {
                     List<int> list = new List<int>();
+
+                    if (debtorDictionary.ContainsKey(i))
+                    {
+                        document[i].debtor = true;
+                    }
 
                     for (int j = firstCheckBoxColumnIndex; j < columnCount; j++)
                     {
@@ -173,7 +195,7 @@ namespace AutomaticOrderGeneration
 
                     if (list.Count == 0)
                     {
-                        list.Add((int)OrderFileGenerator.Filials.Minsk);
+                        list.Add((int) OrderFileGenerator.Filials.Minsk);
                     }
 
                     filialMarks.Add(list);
@@ -181,13 +203,14 @@ namespace AutomaticOrderGeneration
 
                 if (filialMarks.Count == 0)
                 {
-                    MessageBox.Show("Нет данных для генерации выписки", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Нет данных для генерации выписки", "Ошибка", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                     return;
                 }
 
                 try
                 {
-                    this.Cursor = System.Windows.Forms.Cursors.Default;
+                    Cursor = Cursors.Default;
                     OrderFileGenerator.SaveOrderIntoFile(prologue, document, filialMarks, epilogue);
                 }
                 catch (Exception exc)
@@ -196,13 +219,13 @@ namespace AutomaticOrderGeneration
                 }
                 finally
                 {
-                    if(OrderFileGenerator.Register != null)
+                    if (OrderFileGenerator.Register != null)
                         OrderFileGenerator.Register.Close(false, false, false);
                     OrderFileGenerator.ExcelApp.Quit();
                     GC.Collect();
                 }
             }
-            else 
+            else
             {
                 if (OrderFileGenerator.Register != null)
                     OrderFileGenerator.Register.Close(false, false, false);
@@ -214,11 +237,12 @@ namespace AutomaticOrderGeneration
 
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Автоматический генератор выписок\nВерсия 1.1\n\nНовое в этой версии: импорт данных из " +
-                "реестра\n\n2015 г.", "О программе", MessageBoxButtons.OK, 
+            MessageBox.Show("Автоматический генератор выписок\nВерсия 1.2\n\nНовое в 1.1: импорт данных из " +
+                            "реестра\n2015 г.\n\nНовое в 1.2: работа с новой валютой, возможность отмечать платежи должников\n2016 г.",
+                "О программе", MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
         }
-        
+
 
         private void RegisterPathToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -236,19 +260,136 @@ namespace AutomaticOrderGeneration
 
         private void gridOrder_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewCheckBoxCell cell = gridOrder.CurrentCell as DataGridViewCheckBoxCell;
-
-            if (cell != null)
+            // платеж либо от должника, либо нет; не может быть комбинированный платеж
+            if (CheckGridColumn() && !debtorDictionary.ContainsKey(gridOrder.CurrentCell.RowIndex))
             {
-                cell.Value = cell.Value == null || !((bool)cell.Value);
-                gridOrder.RefreshEdit();
-                gridOrder.NotifyCurrentCellDirty(true);
+                SetOrUnsetCheck();
             }
         }
 
         private void gridOrder_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             gridOrder.RefreshEdit();
+        }
+
+        private void debtorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (debtorDictionary.ContainsKey(gridOrder.CurrentCell.RowIndex))
+            {
+                RemoveDebtorMark();
+            }
+            else
+            {
+                AddDebtorMark();
+            }
+        }
+
+        private void AddDebtorMark()
+        {
+            gridOrder.CurrentCell.Style.BackColor = debtorColor;
+            debtorDictionary.Add(gridOrder.CurrentCell.RowIndex, gridOrder.CurrentCell.ColumnIndex);
+
+            for (int i = columnNames.Length; i < gridOrder.ColumnCount; i++)
+            {
+                gridOrder[i, gridOrder.CurrentCell.RowIndex].ReadOnly = true;
+            }
+
+            SetOrUnsetCheck(true);
+        }
+
+        private void RemoveDebtorMark()
+        {
+            gridOrder.CurrentCell.Style.BackColor = defaultColor;
+            debtorDictionary.Remove(gridOrder.CurrentCell.RowIndex);
+
+            for (int i = columnNames.Length; i < gridOrder.ColumnCount; i++)
+            {
+                gridOrder[i, gridOrder.CurrentCell.RowIndex].ReadOnly = false;
+            }
+
+            SetOrUnsetCheck(false);
+        }
+
+        private void gridOrder_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.ColumnIndex >= columnNames.Length && e.Button == MouseButtons.Right)
+            {
+                // платеж может быть только за одним должником-филиалом
+                if (!debtorDictionary.ContainsKey(e.RowIndex) ||
+                    debtorDictionary[e.RowIndex] == e.ColumnIndex)
+                {
+                    gridOrder.CurrentCell = gridOrder.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                    gridOrder.Focus();
+
+                    // запрет возможности отметить должника в платеже, если есть уже другие отметки
+                    for (int i = columnNames.Length; i < gridOrder.ColumnCount; i++)
+                    {
+                        DataGridViewCheckBoxCell cell =
+                            gridOrder[i, gridOrder.CurrentCell.RowIndex] as DataGridViewCheckBoxCell;
+
+                        if (cell != null && cell.Value != null && (bool) cell.Value)
+                        {
+                            if (!debtorDictionary.ContainsKey(e.RowIndex) ||
+                                debtorDictionary[e.RowIndex] != e.ColumnIndex)
+                            {
+                                return;
+                            }
+                        }
+                    }
+
+                    if (debtorDictionary.ContainsKey(e.RowIndex))
+                    {
+                        debtorToolStripMenuItem.Checked = true;
+                    }
+                    else
+                    {
+                        debtorToolStripMenuItem.Checked = false;
+                    }
+
+                    contextMenuStrip1.Show(PointToScreen(gridOrder.GetCellDisplayRectangle(
+                        e.ColumnIndex, e.RowIndex, false).Location));
+                }
+            }
+        }
+
+        private void SetOrUnsetCheck()
+        {
+            if (CheckGridColumn())
+            {
+                DataGridViewCheckBoxCell cell = gridOrder.CurrentCell as DataGridViewCheckBoxCell;
+
+                if (cell != null)
+                {
+                    cell.Value = cell.Value == null || !((bool) cell.Value);
+                    gridOrder.RefreshEdit();
+                    gridOrder.NotifyCurrentCellDirty(true);
+                }
+            }
+        }
+
+        private void SetOrUnsetCheck(bool value)
+        {
+            if (CheckGridColumn())
+            {
+                DataGridViewCheckBoxCell cell = gridOrder.CurrentCell as DataGridViewCheckBoxCell;
+
+                if (cell != null)
+                {
+                    cell.Value = value;
+                    gridOrder.RefreshEdit();
+                    gridOrder.NotifyCurrentCellDirty(true);
+                }
+            }
+        }
+
+        private void gridOrder_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            SetOrUnsetCheck(false);
+        }
+
+        private bool CheckGridColumn()
+        {
+            return gridOrder.CurrentCell.ColumnIndex >= columnNames.Length;
         }
     }
 }

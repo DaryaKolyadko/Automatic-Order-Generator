@@ -27,6 +27,8 @@ namespace AutomaticOrderGeneration
         public String ratingDebit { get; set; }
         public double ratingCredit { get; set; }
 
+        public bool debtor;
+
         private PaymentRecord()
         {
             documentDate = new DateTime();

@@ -5,7 +5,6 @@ using System.Text;
 using System.Data;
 using System.IO;
 using System.Windows.Forms;
-using Microsoft.Office.Interop.Excel;
 using DataTable = System.Data.DataTable;
 using Interop = Microsoft.Office.Interop;
 
@@ -46,13 +45,20 @@ namespace AutomaticOrderGeneration
         private static Dictionary<String, double> generalSumDictionary; // код ордера, общая сумма
         private static String excelCellStart = "A2";
         private static String excelCellEnd = "A";
-        private static String[] paperAccounts = {"3140000000101"}; // с этого счета приходят платежи со Сморгони и Волковыска
+        private static String[] paperAccounts = {"3140000000101", "3140100280026"}; 
+        // 1 - с этого счета приходят платежи со Сморгони и Волковыска
+        // 2 - с этого счета приходят платежи с Минска и Марьиной Горки
         // они ничем не отличаются, кроме номера документа, и их нет в реестре. поэтому их не ищем даже в реестре
         // они есть только на бумагах
         private static List<String>[] paperFilials = {new List<string>(){
                                                                         filialNames[(int)Filials.Volkovisk], 
-                                                                        filialNames[(int)Filials.Smorgon]}};
-        private static List<String>[]paperAdditionalCodes = {new List<string>() { "152011", "152111" }};
+                                                                        filialNames[(int)Filials.Smorgon]},
+                                                     new List<string>(){
+                                                                        filialNames[(int)Filials.Minsk], 
+                                                                        filialNames[(int)Filials.MarGorka]}};
+        private static List<String>[]paperAdditionalCodes = {new List<string>() { "152011", "152111" },
+                                                             new List<string>() { "153001", "153000" }            
+        };
         public static void SaveOrderIntoFile(string prologue, List<PaymentRecord> content, List<List<int>> filialMarks,
             string epilogue)
         {
@@ -100,9 +106,11 @@ namespace AutomaticOrderGeneration
                 }
             }
 
+            DoubleComparator doubleComparator = new DoubleComparator();
+
             foreach (KeyValuePair<String, double> val in generalSumDictionary)
             {
-                if(val.Value != 0)
+                if (doubleComparator.Compare(val.Value, 0) != 0)
                 {
                     Clipboard.SetText(val.Key);
                     MessageBox.Show("Обнаружено несоответствие. Не совпадают итоговая сумма и сумма по филиалам:\nНомер док. " + 
@@ -193,10 +201,11 @@ namespace AutomaticOrderGeneration
                 previousWasMoved %= 2;
             }
 
-            if (paperAccountIndex != -1)
+            if (paperAccountIndex != -1 || record.debtor)
             {
                 if (!generalSumDictionary.ContainsKey(record.documentNumber)) // если сумма с нескольких филиалов
-                    generalSumDictionary.Add(record.documentNumber, 0); // записей на филиалы Сморгонь и Волковыск в реестре нету
+                    generalSumDictionary.Add(record.documentNumber, 0);
+                   // записей на филиалы Сморгонь и Волковыск в реестре нету + нет должников
             }
             else
             {
@@ -208,10 +217,7 @@ namespace AutomaticOrderGeneration
                     throw new Exception("Обнаружено несоответствие. Не найдена запись в реестре для:\nНомер док.: " +
                                         record.documentNumber + "\nФилиал: " + filialNames[filial]);
                 }
-                else
-                {
-                    record.ratingCredit = credit;
-                }
+                record.ratingCredit = credit;
             }
             result += String.Format(cultureInfo, indent + " {1}", record.ratingCredit, filialShortNames[filial]);
             
@@ -308,10 +314,10 @@ namespace AutomaticOrderGeneration
                     if (value == null)
                         paramsList.Add(String.Empty);
                     else
-                        paramsList.Add(value.ToString());
+                        paramsList.Add(Convert.ToString(value, cultureInfo));
                 }
 
-                generalSumDictionary.Add(paramsList[0], Convert.ToDouble(paramsList[indexGeneralSum], Program.cultureInfo));
+                generalSumDictionary.Add(paramsList[0], Convert.ToDouble(paramsList[indexGeneralSum], cultureInfo));
                 registerPart.Rows.Add(paramsList.ToArray());
                 
                 // ищем дальше, начиная с последней найденной ячейки
@@ -336,7 +342,7 @@ namespace AutomaticOrderGeneration
             {
                 if (rows.Length == 1)
                 {
-                    credit = Convert.ToDouble(rows.First()[filial + filialRegisterIndent]);
+                    credit = Convert.ToDouble(rows.First()[filial + filialRegisterIndent], cultureInfo);
                     generalSumDictionary[record.documentNumber] -= credit;
                 }
                 else
@@ -346,7 +352,7 @@ namespace AutomaticOrderGeneration
                     {
                         if (r[0].ToString() == record.documentNumber)
                         {
-                            credit = Convert.ToDouble(r[filial + filialRegisterIndent]);
+                            credit = Convert.ToDouble(r[filial + filialRegisterIndent], cultureInfo);
                             generalSumDictionary[record.documentNumber] -= credit;
                         }
                     }
