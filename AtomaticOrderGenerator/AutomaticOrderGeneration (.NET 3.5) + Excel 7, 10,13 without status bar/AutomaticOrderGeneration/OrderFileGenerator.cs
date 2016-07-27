@@ -185,7 +185,7 @@ namespace AutomaticOrderGeneration
                 {
                     generalSumDictionary[record.documentNumber] -= record.ratingCredit;
                 }
-                
+
                 result += String.Format(cultureInfo, standard, record.ratingCredit);
 
                 if (previousWasMoved == 1)

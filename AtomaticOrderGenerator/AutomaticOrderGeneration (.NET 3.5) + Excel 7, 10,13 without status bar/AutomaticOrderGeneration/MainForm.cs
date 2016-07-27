@@ -295,6 +295,7 @@ namespace AutomaticOrderGeneration
             }
 
             SetOrUnsetCheck(true);
+            gridOrder.ClearSelection();
         }
 
         private void RemoveDebtorMark()
@@ -308,6 +309,7 @@ namespace AutomaticOrderGeneration
             }
 
             SetOrUnsetCheck(false);
+            gridOrder.ClearSelection();
         }
 
         private void gridOrder_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
