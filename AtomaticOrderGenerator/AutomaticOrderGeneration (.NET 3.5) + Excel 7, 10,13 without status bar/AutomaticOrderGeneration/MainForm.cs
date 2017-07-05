@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
+using AutomaticOrderGeneration.Util;
 
 namespace AutomaticOrderGeneration
 {
@@ -237,8 +238,9 @@ namespace AutomaticOrderGeneration
 
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Автоматический генератор выписок\nВерсия 1.2\n\nНовое в 1.1: импорт данных из " +
-                            "реестра\n2015 г.\n\nНовое в 1.2: работа с новой валютой, возможность отмечать платежи должников\n2016 г.",
+            MessageBox.Show("Автоматический генератор выписок\nВерсия 1.3\n\nНовое в 1.1: импорт данных из " +
+                            "реестра\n2015 г.\n\nНовое в 1.2: работа с новой валютой, возможность отмечать платежи должников\n2016 г." +
+                            "\n\nНовое в 1.3: поддержка автоформатирования 28-символьных корреспондент.счетов при обработке выписки.",
                 "О программе", MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
         }

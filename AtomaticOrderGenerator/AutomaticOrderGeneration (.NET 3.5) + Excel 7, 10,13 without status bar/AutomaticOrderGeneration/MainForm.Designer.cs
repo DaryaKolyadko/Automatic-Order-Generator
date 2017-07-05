@@ -78,26 +78,26 @@
             // OpenFileToolStripMenuItem
             // 
             this.OpenFileToolStripMenuItem.Name = "OpenFileToolStripMenuItem";
-            this.OpenFileToolStripMenuItem.Size = new System.Drawing.Size(294, 30);
+            this.OpenFileToolStripMenuItem.Size = new System.Drawing.Size(307, 30);
             this.OpenFileToolStripMenuItem.Text = "Открыть...";
             this.OpenFileToolStripMenuItem.Click += new System.EventHandler(this.OpenFileToolStripMenuItem_Click);
             // 
             // GenerateOrderToolStripMenuItem
             // 
             this.GenerateOrderToolStripMenuItem.Name = "GenerateOrderToolStripMenuItem";
-            this.GenerateOrderToolStripMenuItem.Size = new System.Drawing.Size(294, 30);
+            this.GenerateOrderToolStripMenuItem.Size = new System.Drawing.Size(307, 30);
             this.GenerateOrderToolStripMenuItem.Text = "Сгенерировать выписку...";
             this.GenerateOrderToolStripMenuItem.Click += new System.EventHandler(this.GenerateOrderToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(291, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(304, 6);
             // 
             // ExitToolStripMenuItem
             // 
             this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
-            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(294, 30);
+            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(307, 30);
             this.ExitToolStripMenuItem.Text = "Выход";
             this.ExitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
@@ -115,20 +115,20 @@
             this.RegisterPathToolStripMenuItem,
             this.RegisterSheetNameToolStripMenuItem});
             this.SettingsToolStripMenuItem.Name = "SettingsToolStripMenuItem";
-            this.SettingsToolStripMenuItem.Size = new System.Drawing.Size(172, 30);
+            this.SettingsToolStripMenuItem.Size = new System.Drawing.Size(185, 30);
             this.SettingsToolStripMenuItem.Text = "Настройки";
             // 
             // RegisterPathToolStripMenuItem
             // 
             this.RegisterPathToolStripMenuItem.Name = "RegisterPathToolStripMenuItem";
-            this.RegisterPathToolStripMenuItem.Size = new System.Drawing.Size(342, 30);
+            this.RegisterPathToolStripMenuItem.Size = new System.Drawing.Size(355, 30);
             this.RegisterPathToolStripMenuItem.Text = "Расположение реестра...";
             this.RegisterPathToolStripMenuItem.Click += new System.EventHandler(this.RegisterPathToolStripMenuItem_Click);
             // 
             // RegisterSheetNameToolStripMenuItem
             // 
             this.RegisterSheetNameToolStripMenuItem.Name = "RegisterSheetNameToolStripMenuItem";
-            this.RegisterSheetNameToolStripMenuItem.Size = new System.Drawing.Size(342, 30);
+            this.RegisterSheetNameToolStripMenuItem.Size = new System.Drawing.Size(355, 30);
             this.RegisterSheetNameToolStripMenuItem.Text = "Название страницы в реестре...";
             this.RegisterSheetNameToolStripMenuItem.Click += new System.EventHandler(this.RegisterSheetNameToolStripMenuItem_Click);
             // 
@@ -143,7 +143,7 @@
             // AboutToolStripMenuItem
             // 
             this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
-            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(209, 30);
+            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(222, 30);
             this.AboutToolStripMenuItem.Text = "О программе...";
             this.AboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
@@ -174,12 +174,12 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.debtorToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(159, 34);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(172, 34);
             // 
             // debtorToolStripMenuItem
             // 
             this.debtorToolStripMenuItem.Name = "debtorToolStripMenuItem";
-            this.debtorToolStripMenuItem.Size = new System.Drawing.Size(158, 30);
+            this.debtorToolStripMenuItem.Size = new System.Drawing.Size(171, 30);
             this.debtorToolStripMenuItem.Text = "Должник";
             this.debtorToolStripMenuItem.Click += new System.EventHandler(this.debtorToolStripMenuItem_Click);
             // 
@@ -207,7 +207,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
-            this.Text = "Автоматический генератор выписок 1.2";
+            this.Text = "Автоматический генератор выписок 1.3";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

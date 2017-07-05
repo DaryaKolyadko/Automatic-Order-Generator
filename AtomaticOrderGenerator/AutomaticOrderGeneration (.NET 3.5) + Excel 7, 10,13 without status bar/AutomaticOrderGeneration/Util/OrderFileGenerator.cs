@@ -8,7 +8,7 @@ using System.Windows.Forms;
 using DataTable = System.Data.DataTable;
 using Interop = Microsoft.Office.Interop;
 
-namespace AutomaticOrderGeneration
+namespace AutomaticOrderGeneration.Util
 {
     class OrderFileGenerator
     {
@@ -176,7 +176,7 @@ namespace AutomaticOrderGeneration
                     result += String.Format("{0, 10}", filialCodes[filial]);
             }
 
-            result += String.Format("{0}{1, 15}{2, 29}", record.correspondentCode, 
+            result += String.Format("{0}{1, 31}{2, 10}", record.correspondentCode, 
                 record.correspondentAccount, record.ratingDebit);
 
             if ((filial == (int)Filials.Minsk && !complex) || additionalCode)

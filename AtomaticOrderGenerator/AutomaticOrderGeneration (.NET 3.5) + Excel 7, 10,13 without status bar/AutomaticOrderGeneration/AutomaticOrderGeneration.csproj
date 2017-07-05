@@ -67,15 +67,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DoubleComparator.cs" />
+    <Compile Include="Util\DoubleComparator.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="OrderFileGenerator.cs" />
-    <Compile Include="OrderFileParser.cs" />
+    <Compile Include="Util\OrderFileGenerator.cs" />
+    <Compile Include="Util\OrderFileParser.cs" />
     <Compile Include="PaymentRecord.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -92,6 +92,7 @@
       <DependentUpon>RegiterPathForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
+    <Compile Include="Util\PaymentRecordUtil.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
