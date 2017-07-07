@@ -6,7 +6,8 @@ namespace AutomaticOrderGeneration.Util
 {
     sealed class PaymentRecordUtil
     {
-        private static Regex AppendixPattern = new Regex(@"[0-9]{11}");
+        private static Regex AccountAppendixPattern = new Regex(@"[0-9]{11}");
+        private static Regex CodeAppendixPattern = new Regex(@"[0-9A-Z]{2}|[0-9A-Z]{5}");
 
         private PaymentRecordUtil()
         {
@@ -25,7 +26,7 @@ namespace AutomaticOrderGeneration.Util
                 record.documentDate = DateTime.Parse(splitResult[(int)PaymentRecord.Fields.documentDate]);
                 record.documentNumber = splitResult[(int)PaymentRecord.Fields.documentNumber];
                 record.operationCode = Int32.Parse(splitResult[(int)PaymentRecord.Fields.operationCode]);
-                record.correspondentCode = Int32.Parse(splitResult[(int)PaymentRecord.Fields.correspondentCode]);
+                record.correspondentCode = splitResult[(int)PaymentRecord.Fields.correspondentCode];
                 record.correspondentAccount = splitResult[(int)PaymentRecord.Fields.correspondentAccount];
                 record.ratingDebit = splitResult[(int)PaymentRecord.Fields.ratingDebit];
                 record.ratingCredit = Convert.ToDouble(splitResult[(int)PaymentRecord.Fields.ratingCredit], Program.cultureInfo);
@@ -41,22 +42,54 @@ namespace AutomaticOrderGeneration.Util
             return record;
         }
 
-        public static String GetIfAppendix(String str)
+        public static CorrepondentAppendix GetIfAppendix(String str)
         {
             String[] splitResult = str.Split(new String[] { " " }, StringSplitOptions.RemoveEmptyEntries);
 
-            if (splitResult.Length > 1 || !splitResult.Any() || !CheckAppendix(splitResult.First()))
+            if (CheckAppendix(splitResult))
             {
-                return null;
+                return new CorrepondentAppendix(splitResult);
             }
-            else
-            {
-                return splitResult.First();
-            }
+            return null;
         }
-        private static bool CheckAppendix(String appendix)
+
+        private static bool CheckAppendix(String[] appendix)
         {
-            return appendix != null && AppendixPattern.Match(appendix).Success;
+            if (appendix != null && appendix.Length < 3 && appendix.Any())
+            {
+                if (appendix.Length == 1)
+                {
+                    return AccountAppendixPattern.Match(appendix.First()).Success;
+                }
+                else
+                {
+                    return CodeAppendixPattern.Match(appendix[0]).Success &&
+                        AccountAppendixPattern.Match(appendix[1]).Success;
+                }
+            }
+            return false;
+        }
+
+        public class CorrepondentAppendix
+        {
+            public CorrepondentAppendix(String[] apppendInit)
+            {
+                if (apppendInit != null)
+                {
+                    if (apppendInit.Length == 1)
+                    {
+                        AccountAppendix = apppendInit[0];
+                    }
+                    else if (apppendInit.Length == 2)
+                    {
+                        CodeAppendix = apppendInit[0];
+                        AccountAppendix = apppendInit[1];
+                    }
+                }
+            }
+
+            public String CodeAppendix { get; set; }
+            public String AccountAppendix { get; set; }
         }
     }
 }

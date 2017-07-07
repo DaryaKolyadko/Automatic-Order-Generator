@@ -19,7 +19,7 @@ namespace AutomaticOrderGeneration
         public DateTime documentDate { get; set; }
         public String documentNumber { get; set; }
         public int operationCode { get; set; }
-        public int correspondentCode { get; set; }
+        public String correspondentCode { get; set; }
         public String correspondentAccount { get; set; }
         public String ratingDebit { get; set; }
         public double ratingCredit { get; set; }
@@ -31,7 +31,7 @@ namespace AutomaticOrderGeneration
             documentDate = new DateTime();
             documentNumber = null;
             operationCode = -1;
-            correspondentCode = -1;
+            correspondentCode = null;
             correspondentAccount = null;
             ratingDebit = null;
             ratingCredit = -1.0;

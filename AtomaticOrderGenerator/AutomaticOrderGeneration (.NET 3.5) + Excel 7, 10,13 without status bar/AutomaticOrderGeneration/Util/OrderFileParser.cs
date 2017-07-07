@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using static AutomaticOrderGeneration.Util.PaymentRecordUtil;
 
 namespace AutomaticOrderGeneration.Util
 {
@@ -13,7 +14,7 @@ namespace AutomaticOrderGeneration.Util
             List<PaymentRecord> document = new List<PaymentRecord>();
             prologue = "";
             epilogue = "";
-            String appendix;
+            CorrepondentAppendix appendix;
             String line;
             PaymentRecord record;
             bool foundContent = false;
@@ -36,7 +37,8 @@ namespace AutomaticOrderGeneration.Util
                     else if (document.Any())
                     {
                         record = document.LastOrDefault();
-                        record.correspondentAccount += appendix;
+                        record.correspondentCode += appendix.CodeAppendix ?? String.Empty;
+                        record.correspondentAccount += appendix.AccountAppendix ?? String.Empty;
                     }
                 }
                 else
