@@ -8,5 +8,15 @@
     <Setting Name="RegisterSheetName" Type="System.String" Scope="User">
       <Value Profile="(Default)">ЕРИП</Value>
     </Setting>
+    <Setting Name="FilialsCodes" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;153001&lt;/string&gt;
+  &lt;string&gt;153000&lt;/string&gt;
+  &lt;string&gt;153011&lt;/string&gt;
+  &lt;string&gt;153101&lt;/string&gt;
+  &lt;string&gt;153111&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

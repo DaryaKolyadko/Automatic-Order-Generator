@@ -72,7 +72,6 @@
             this.ButttonCancel.TabIndex = 3;
             this.ButttonCancel.Text = "Отмена";
             this.ButttonCancel.UseVisualStyleBackColor = true;
-            this.ButttonCancel.Click += new System.EventHandler(this.ButttonCancel_Click);
             // 
             // RegiterPathForm
             // 

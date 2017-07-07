@@ -40,6 +40,7 @@
             this.SettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RegisterPathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RegisterSheetNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.filialsCodesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.HelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gridOrder = new System.Windows.Forms.DataGridView();
@@ -113,7 +114,8 @@
             // 
             this.SettingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.RegisterPathToolStripMenuItem,
-            this.RegisterSheetNameToolStripMenuItem});
+            this.RegisterSheetNameToolStripMenuItem,
+            this.filialsCodesToolStripMenuItem});
             this.SettingsToolStripMenuItem.Name = "SettingsToolStripMenuItem";
             this.SettingsToolStripMenuItem.Size = new System.Drawing.Size(185, 30);
             this.SettingsToolStripMenuItem.Text = "Настройки";
@@ -131,6 +133,13 @@
             this.RegisterSheetNameToolStripMenuItem.Size = new System.Drawing.Size(355, 30);
             this.RegisterSheetNameToolStripMenuItem.Text = "Название страницы в реестре...";
             this.RegisterSheetNameToolStripMenuItem.Click += new System.EventHandler(this.RegisterSheetNameToolStripMenuItem_Click);
+            // 
+            // filialsCodesToolStripMenuItem
+            // 
+            this.filialsCodesToolStripMenuItem.Name = "filialsCodesToolStripMenuItem";
+            this.filialsCodesToolStripMenuItem.Size = new System.Drawing.Size(355, 30);
+            this.filialsCodesToolStripMenuItem.Text = "Коды филиалов...";
+            this.filialsCodesToolStripMenuItem.Click += new System.EventHandler(this.filialsCodesToolStripMenuItem_Click);
             // 
             // HelpToolStripMenuItem
             // 
@@ -207,7 +216,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
-            this.Text = "Автоматический генератор выписок 1.3";
+            this.Text = "Автоматический генератор выписок 1.4";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -236,6 +245,7 @@
         private System.Windows.Forms.ToolStripMenuItem RegisterSheetNameToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem debtorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem filialsCodesToolStripMenuItem;
     }
 }
 

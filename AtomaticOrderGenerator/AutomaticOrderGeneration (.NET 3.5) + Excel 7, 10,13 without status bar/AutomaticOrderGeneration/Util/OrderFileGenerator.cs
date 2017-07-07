@@ -31,7 +31,7 @@ namespace AutomaticOrderGeneration.Util
         private static System.Globalization.CultureInfo cultureInfo = new System.Globalization.CultureInfo("en-GB");
         private static String[] filialShortNames = { "Мн", "Мг", "В", "Л", "С" };
 
-        private static String[] filialCodes = { "153001", "153000", "153011", "153101", "153111" };
+        private static String[] filialCodes = Properties.Settings.Default.FilialsCodes.Cast<String>().ToArray();
         private static String[] filialAdditionalCodes = { "", "153001", "", "150501", "152111" };
         private static String[] filialSpecialAccounts = { "", "3140186450061", "", "3140100020021", "" }; // если correspondentAccount совпадает с этим кодом, то используем filialAdditionalCodes
         private static String[] indents = {"{0, 28:0.00}", "{0, 21:0.00}"}; // отступ вправо, отступ влево
@@ -176,7 +176,7 @@ namespace AutomaticOrderGeneration.Util
                     result += String.Format("{0, 10}", filialCodes[filial]);
             }
 
-            result += String.Format("{0}{1, 31}{2, 10}", record.correspondentCode, 
+            result += String.Format("{0, 12}{1, 31}{2, 10}", record.correspondentCode, 
                 record.correspondentAccount, record.ratingDebit);
 
             if ((filial == (int)Filials.Minsk && !complex) || additionalCode)
@@ -375,6 +375,11 @@ namespace AutomaticOrderGeneration.Util
             throw new Exception("Обнаружено несоответствие для записи с номером документа " + documentNumber +
                 ".\nКорресп. счету " + paperAccounts[paperAccountIndex] + " могут сооответствовать филиалы: " +
                                 filialsStr);
+        }
+
+        public static void UpdateFilialCodes()
+        {
+            filialCodes = Properties.Settings.Default.FilialsCodes.Cast<String>().ToArray();
         }
     }
 }

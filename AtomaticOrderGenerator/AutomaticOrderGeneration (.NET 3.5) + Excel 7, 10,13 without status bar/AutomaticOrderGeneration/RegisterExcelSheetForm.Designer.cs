@@ -54,7 +54,6 @@
             this.ButtonCancel.TabIndex = 1;
             this.ButtonCancel.Text = "Отмена";
             this.ButtonCancel.UseVisualStyleBackColor = true;
-            this.ButtonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
             // 
             // textBoxRegisterSheetName
             // 

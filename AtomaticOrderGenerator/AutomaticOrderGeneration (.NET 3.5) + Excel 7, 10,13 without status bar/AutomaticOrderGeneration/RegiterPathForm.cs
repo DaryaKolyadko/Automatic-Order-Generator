@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace AutomaticOrderGeneration
@@ -46,11 +40,6 @@ namespace AutomaticOrderGeneration
         {
             Properties.Settings.Default.RegisterPath = textBoxCurrentRegisterPath.Text;
             Properties.Settings.Default.Save();
-        }
-
-        private void ButttonCancel_Click(object sender, EventArgs e)
-        {
-            Close();
         }
     }
 }

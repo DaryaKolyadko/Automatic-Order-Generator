@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -238,9 +237,10 @@ namespace AutomaticOrderGeneration
 
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Автоматический генератор выписок\nВерсия 1.3\n\nНовое в 1.1: импорт данных из " +
+            MessageBox.Show("Автоматический генератор выписок\nВерсия 1.4\n\nНовое в 1.1: импорт данных из " +
                             "реестра\n2015 г.\n\nНовое в 1.2: работа с новой валютой, возможность отмечать платежи должников\n2016 г." +
-                            "\n\nНовое в 1.3: поддержка автоформатирования 28-символьных корреспондент.счетов при обработке выписки.",
+                            "\n\nНовое в 1.3: поддержка автоформатирования 28-символьных корреспондент.счетов при обработке выписки\n2017." +
+                            "\n\nНовое в 1.4: возможность настройки кодов филиалов и поддержка автоформатирования 8-11-символьных корреспондент.кодов при обработке выписки\n2017.",
                 "О программе", MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
         }
@@ -394,6 +394,12 @@ namespace AutomaticOrderGeneration
         private bool CheckGridColumn()
         {
             return gridOrder.CurrentCell.ColumnIndex >= columnNames.Length;
+        }
+
+        private void filialsCodesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RegisterFilialsCodesForm form = new RegisterFilialsCodesForm();
+            form.ShowDialog();
         }
     }
 }
