@@ -173,10 +173,10 @@ namespace AutomaticOrderGeneration.Util
                 if (paperAccountIndex != -1 && CheckPaperFilial(paperAccountIndex, filial, record.documentNumber))
                     result += String.Format("{0, 10}", paperAdditionalCodes[paperAccountIndex][paperFilials[paperAccountIndex].IndexOf(filialNames[filial])]);
                 else    
-                    result += String.Format("{0, 10}", filialCodes[filial]);
+                    result += String.Format("   {0}", filialCodes[filial]);
             }
 
-            result += String.Format("{0, 12}{1, 31}{2, 10}", record.correspondentCode, 
+            result += String.Format("{0, -12}{1, 31}{2, 10}", record.correspondentCode, 
                 record.correspondentAccount, record.ratingDebit);
 
             if ((filial == (int)Filials.Minsk && !complex) || additionalCode)
